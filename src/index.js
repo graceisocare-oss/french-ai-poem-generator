@@ -18,17 +18,16 @@ let context =
 let prompt = `User instructions: Generate a French poem about ${instructionsInput.value}`;
 let apiURL = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
 
+let poemElement = document.querySelector("#poem");
+poemElement.classList.remove("hidden");
+poemElement.innerHTML = `<div class="generating">Generating a French poem about ${instructionsInput.value}</div>`;
+
 console.log("Generating poem");
 console.log(`Prompt: ${prompt}`);
 console.log(`Context: ${context}`); 
 
 axios.get(apiURL).then(displayPoem);
-
- 
-let poemElement = document.querySelector("#poem");
-    poemElement.innerHTML = "La tombe dit à la rose";
 }
-
 
 let poemFormElement = document.querySelector("#poem-generator-form");
 poemFormElement.addEventListener("submit", generatePoem); 
